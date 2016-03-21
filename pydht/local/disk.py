@@ -89,3 +89,20 @@ class LocalDiskDHT:
                     outFile.write(line)
         # Remove the tmp file.
         os.remove(tmpFileName)
+
+
+    # Calculate the collision probability of this hash table.
+    def calculateCollision(self):
+        total = 0
+        count = 0
+        for filePath in [os.path.join(self.path, f) for f in
+                         os.listdir(self.path) if
+                         os.path.isfile(os.path.join(self.path, f))]:
+            with open(filePath, "r") as inFile:
+                for line in inFile:
+                    chunk = line.split(":")
+                    if int(chunk[1]) > 1:
+                        count = count + int(chunk[1])
+                    total = total + int(chunk[1])
+
+        return count / float(total)

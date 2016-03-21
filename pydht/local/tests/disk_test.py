@@ -36,6 +36,33 @@ class LocalDiskDHTTest(unittest.TestCase):
         shutil.rmtree(self.path, ignore_errors=True)
 
 
+    def test_calculateCollision(self):
+        distributedHT = LocalDiskDHT(8, 10, self.path)
+
+        Case = namedtuple("Case", "hashValue")
+        cases = [
+            Case(5),
+            Case(10),
+            Case(5),
+            Case(45),
+            Case(100),
+            Case(110),
+            Case(105),
+            Case(110),
+            Case(245),
+            Case(252)
+        ]
+        expected_collision = 0.4
+
+        for case in cases:
+            distributedHT.insert(case.hashValue)
+
+        self.assertEqual(distributedHT.calculateCollision(), expected_collision)
+
+        # Cleaning up.
+        shutil.rmtree(self.path, ignore_errors=True)
+
+
     # This function ensures that a hashValue is stored in htId and it is unique.
     def __ensureUniquness(self, hashValue, htId):
         fileName = os.path.join(self.path, str(htId))
