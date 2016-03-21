@@ -3,3 +3,6 @@ test:
 
 clean:
 	rm -f $(shell find . -name '*.pyc' -type f)
+
+install:
+	python setup.py install
