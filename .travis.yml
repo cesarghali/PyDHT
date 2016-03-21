@@ -5,6 +5,11 @@ python:
 
 install:
   - pip install .
+  - pip install coveralls
 
 script:
   - make test
+  - coverage run --source=pydht pydht/local/tests/disk_test.py
+
+after_success:
+  - coveralls
