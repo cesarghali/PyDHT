@@ -10,7 +10,7 @@ import shutil
 class LocalDiskDHT:
     # hashSize is in bits, numOfHt is the number of hath tables to use in the
     # distributed hash table, and path is the directory location where the DHT
-    # is stored on disk
+    # is stored on disk.
     def __init__(self, hashSize, numOfHT, path):
         self.hashSize = hashSize
         self.numOfHT = numOfHT
