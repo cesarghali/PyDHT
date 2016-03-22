@@ -7,7 +7,7 @@ test:
 
 coverage:
 	for t in $(TEST_FILES) ; do \
-		coverage run -a --source=pydht $$t ; \
+		coverage run -a $$t ; \
 	done
 
 clean:
