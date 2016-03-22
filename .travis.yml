@@ -9,8 +9,7 @@ install:
 
 script:
   - make test
-  - coverage run --source=pydht pydht/local/tests/disk_test.py
-  - coverage run --source=pydht pydht/local/tests/memory_test.py
+  - make coverage
 
 after_success:
   - coveralls
