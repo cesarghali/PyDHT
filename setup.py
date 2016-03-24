@@ -4,10 +4,10 @@ from pydht import version
 setup(
     name="pydht",
     version=version,
-    description="Pydht is a python implementation of a distributed hash table..",
+    description="Pydht is a python implementation of a distributed hash table.",
     author="Cesar Ghali",
     author_email="cesarghali.p@gmail.com",
     license="GNU License",
-    url="http://github.com/cesarghali/Pydht",
+    url="http://github.com/cesarghali/PyDHT",
     packages=find_packages()
 )
