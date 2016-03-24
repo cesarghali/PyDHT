@@ -1,5 +1,8 @@
 TEST_FILES = $(shell find pydht/local/tests/ -type f \( -iname "*.py" ! -iname "__init__.py" \))
 
+all:
+	python setup.py build
+
 test:
 	for t in $(TEST_FILES) ; do \
 		python $$t ; \
