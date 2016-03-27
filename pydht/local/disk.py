@@ -24,11 +24,15 @@ class LocalDiskDHT:
                 str(self.numOfHT)
 
         self.path = path
-        # Create the hash table directory, first remove it if it exists.
-        if os.path.isdir(path):
-            shutil.rmtree(path, ignore_errors=True)
-        os.makedirs(path)
+        self.__createDirectory()
 
+
+    # Create the hash table directory, first remove it if it exists.
+    def __createDirectory(self):
+        if os.path.isdir(self.path):
+            shutil.rmtree(self.path, ignore_errors=True)
+        os.makedirs(self.path)
+        
 
     # insert adds a new hashValue into the DHT. hashValue is an integer or a long
     # integer.
@@ -72,7 +76,7 @@ class LocalDiskDHT:
 
     # _calculateHTId calculates the HT ID of a given hashValue.
     def _calculateHTId(self, hashValue):
-        htId = int(hashValue / self.htSize) + 1
+        htId = int(hashValue / self.htSize)
         # This throws and error if htId is larger than number of hash tables.
         assert htId <= self.numOfHT
         return htId
