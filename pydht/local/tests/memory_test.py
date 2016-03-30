@@ -42,7 +42,7 @@ class LocalMemoryDHTTest(unittest.TestCase):
         
         for case in self.__cases:
             distributedHT.insert(case.hashValue)        
-            self.assertEqual(distributedHT._read(case.hashValue), case.counter)
+            self.assertEqual(distributedHT.read(case.hashValue), case.counter)
 
 
     def test_calculateCollision(self):

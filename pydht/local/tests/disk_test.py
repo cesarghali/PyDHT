@@ -19,7 +19,7 @@ class LocalDiskDHTTest(unittest.TestCase):
         Case(245, 9, 1),
         Case(252, 10, 1)
     ]
-    __path = "dht_tmp"
+    __path = "disk_dht_tmp"
 
 
     def __insert(self, distributedHT):
@@ -70,7 +70,7 @@ class LocalDiskDHTTest(unittest.TestCase):
         
         for case in self.__cases:
             distributedHT.insert(case.hashValue)        
-            self.assertEqual(distributedHT._read(case.hashValue), case.counter)
+            self.assertEqual(distributedHT.read(case.hashValue), case.counter)
 
         self.__cleanup()
 

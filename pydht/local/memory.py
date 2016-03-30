@@ -8,18 +8,18 @@ class LocalMemoryDHT:
     # hashSize is in bits, and numOfHT is the number of hath tables to use in the
     # distributed hash table.
     def __init__(self, hashSize, numOfHT):
-        self.hashSize = hashSize
-        self.numOfHT = numOfHT
+        self.__hashSize = hashSize
+        self.__numOfHT = numOfHT
 
         # Calculate the hash table size.
         size = math.pow(2, hashSize) / numOfHT
-        self.htSize = int(size)
+        self.__htSize = int(size)
         if int(size) != size:
-            self.numOfHT = self.numOfHT + 1
-            print "Adjusting number of hash tables to " + str(self.numOfHT)
+            self.__numOfHT = self.__numOfHT + 1
+            print "Adjusting number of hash tables to " + str(self.__numOfHT)
         # Initializing the hash tables list.
         self.__hashtables = []
-        for i in range(0, self.numOfHT):
+        for i in range(0, self.__numOfHT):
             self.__hashtables.append({})
 
 
@@ -30,14 +30,14 @@ class LocalMemoryDHT:
         htId = self._calculateHTId(hashValue)
 
         # Read the counter of the hash value.
-        counter = self._read(hashValue)
+        counter = self.read(hashValue)
 
         # Increase the occurrence counter for the given hashValue.
         self.__hashtables[htId][hashValue] = counter + 1
 
 
-    # _read reads the number of occurrences of a given hashValue.
-    def _read(self, hashValue):
+    # read reads the number of occurrences of a given hashValue.
+    def read(self, hashValue):
         # Calculate the HT ID of this hash value.
         htId = self._calculateHTId(hashValue)
 
@@ -50,9 +50,9 @@ class LocalMemoryDHT:
 
     # _calculateHTId calculates the HT ID of a given hashValue.
     def _calculateHTId(self, hashValue):
-        htId = int(hashValue / self.htSize)
+        htId = int(hashValue / self.__htSize)
         # This throws and error if htId is larger than number of hash tables.
-        assert htId < self.numOfHT
+        assert htId < self.__numOfHT
         return htId
 
 
@@ -63,7 +63,7 @@ class LocalMemoryDHT:
         # Count contains the sum of occurrences of hash values with collision,
         # e.g., occurrence value larger than 1.
         count = 0
-        for i in range(0, self.numOfHT):
+        for i in range(0, self.__numOfHT):
             for key in self.__hashtables[i]:
                 if self.__hashtables[i][key] > 1:
                     count = count + self.__hashtables[i][key]
