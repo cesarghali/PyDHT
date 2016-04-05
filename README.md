@@ -65,7 +65,7 @@ Additionally, `LocalDbDHT` provides a `close` API that closes all shelve instanc
 
 ## License
 
-PyDHT is licensed under the GPLv3: [http://www.gnu.org/licenses/gpl-3.0.html(http://www.gnu.org/licenses/gpl-3.0.html).
+PyDHT is licensed under the GPLv3: [http://www.gnu.org/licenses/gpl-3.0.html](http://www.gnu.org/licenses/gpl-3.0.html).
 
 
 ## Disclaimer
