@@ -10,9 +10,9 @@ import os.path
 # <hashValue:occurrences>.
 class LocalDbDHT:
     # hashSize is in bits, and numOfHT is the number of hath tables to use in the
-    # distributed hash table, syncLimit contains the number of inserts before
-    # the shelve object is being synced, and path is the directory location where
-    # the DHT is stored on disk.
+    # distributed hash table, the directory path where the hash table database
+    # files will be stored, and syncLimit contains the number of inserts before
+    # the shelve object is being synced.
     def __init__(self, hashSize, numOfHT, path, syncLimit=100):
         self.__hashSize = hashSize
         self.__numOfHT = numOfHT
