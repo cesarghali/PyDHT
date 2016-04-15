@@ -74,6 +74,15 @@ class LocalDbDHT:
         return counter
 
 
+    # exists checks whether a specific hashValue exists in the DHT.
+    def exists(self, hashValue):
+        counter = self.read(hashValue)
+        if counter > 0:
+            return True
+
+        return False
+
+
     # close closes all shelve instances.
     def close(self):
         for i in range(0, self.__numOfHT):

@@ -58,6 +58,7 @@ Each of the above three classes provides the following APIs.
 
 * `insert` -- takes a hash value as a positive integer (or long integer) parameter and (1) inserts it in the corresponding hashtable with 1 as its number of occurrences, or (2) increases the number of occurrences by one if the hash value already exists.
 * `read` -- takes a hash value as a positive integer (or long integer) parameter and returns its number of occurrences. If the hash value does not exist, 0 is returned.
+* `exists` -- takes a hash value as a positive integer (or long integer) parameter and returns `True` if such value exists in the distributed hashtable, or `False` otherwise.
 * `calculateCollision` -- calculates the probability of collisions in the current DHT.
 
 Additionally, `LocalDbDHT` provides a `close` API that closes all shelve instances.

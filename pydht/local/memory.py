@@ -48,6 +48,15 @@ class LocalMemoryDHT:
         return counter
 
 
+    # exists checks whether a specific hashValue exists in the DHT.
+    def exists(self, hashValue):
+        counter = self.read(hashValue)
+        if counter > 0:
+            return True
+
+        return False
+
+
     # _calculateHTId calculates the HT ID of a given hashValue.
     def _calculateHTId(self, hashValue):
         htId = int(hashValue / self.__htSize)

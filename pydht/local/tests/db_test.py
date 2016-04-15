@@ -18,6 +18,11 @@ class LocalDbDHTTest(unittest.TestCase):
         Case(245, 9, 1),
         Case(252, 10, 1)
     ]
+    __nonExistingCases = [
+        Case(55, 0, 0),
+        Case(65, 0, 0),
+        Case(163, 0, 0)
+    ]
     __path = "db_dht_tmp"
     __syncLimit = 1
 
@@ -62,6 +67,20 @@ class LocalDbDHTTest(unittest.TestCase):
             self.assertEqual(distributedHT.read(case.hashValue), case.counter)
 
         distributedHT.close()
+        self.__cleanup()
+
+
+    def test_exists(self):
+        distributedHT = LocalDbDHT(8, 10, self.__path,
+                                   syncLimit=self.__syncLimit)
+        self.__insert(distributedHT)
+
+        for case in self.__cases:
+            self.assertTrue(distributedHT.exists(case.hashValue))
+
+        for case in self.__nonExistingCases:
+            self.assertFalse(distributedHT.exists(case.hashValue))
+
         self.__cleanup()
 
 
