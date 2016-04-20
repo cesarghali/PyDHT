@@ -79,3 +79,25 @@ class LocalMemoryDHT:
                 total = total + self.__hashtables[i][key]
 
         return count / float(total)
+
+
+    # countCollision counts the hash buckets that have collision, the number of
+    # inserted hash values that collide, and the total number of hash values
+    # inserted into the DHT.
+    def countCollision(self):
+        # hashCount contains the number of hash table buckets that have
+        # collision.
+        hashCount = 0
+        # valueCount contains the sum of occurrences of hash values with
+        # collision, e.g., occurrence value larger than 1.
+        valueCount = 0
+        # totalCount contains the sum of all hash value occurrences in the DHT.
+        totalCount = 0
+        for i in range(0, self.__numOfHT):
+            for key in self.__hashtables[i]:
+                if self.__hashtables[i][key] > 1:
+                    hashCount = hashCount + 1
+                    valueCount = valueCount + self.__hashtables[i][key]
+                totalCount = totalCount + self.__hashtables[i][key]
+
+        return (hashCount, valueCount, totalCount)

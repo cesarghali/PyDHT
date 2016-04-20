@@ -96,5 +96,22 @@ class LocalDbDHTTest(unittest.TestCase):
         self.__cleanup()
 
 
+    def test_countCollision(self):
+        distributedHT = LocalDbDHT(8, 10, self.__path,
+                                   syncLimit=self.__syncLimit)
+        self.__insert(distributedHT)
+
+        expectedHashCount = 2
+        expectedValueCount = 4
+        expectedTotalCount = 9
+        hashCount, valueCount, totalCount = distributedHT.countCollision()
+        self.assertEqual(hashCount, expectedHashCount)
+        self.assertEqual(valueCount, expectedValueCount)
+        self.assertEqual(totalCount, expectedTotalCount)
+
+        distributedHT.close()
+        self.__cleanup()
+
+
 if __name__ == '__main__':
     unittest.main()

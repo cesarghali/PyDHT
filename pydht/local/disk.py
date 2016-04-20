@@ -141,3 +141,29 @@ class LocalDiskDHT:
                     total = total + int(chunk[1])
 
         return count / float(total)
+
+
+    # countCollision counts the hash buckets that have collision, the number of
+    # inserted hash values that collide, and the total number of hash values
+    # inserted into the DHT.
+    def countCollision(self):
+        # hashCount contains the number of hash table buckets that have
+        # collision.
+        hashCount = 0
+        # valueCount contains the sum of occurrences of hash values with
+        # collision, e.g., occurrence value larger than 1.
+        valueCount = 0
+        # totalCount contains the sum of all hash value occurrences in the DHT.
+        totalCount = 0
+        for filePath in [os.path.join(self.__path, f) for f in
+                         os.listdir(self.__path) if
+                         os.path.isfile(os.path.join(self.__path, f))]:
+            with open(filePath, "r") as inFile:
+                for line in inFile:
+                    chunk = line.split(":")
+                    if int(chunk[1]) > 1:
+                        hashCount = hashCount + 1
+                        valueCount = valueCount + int(chunk[1])
+                    totalCount = totalCount + int(chunk[1])
+
+        return (hashCount, valueCount, totalCount)

@@ -60,6 +60,7 @@ Each of the above three classes provides the following APIs.
 * `read` -- takes a hash value as a positive integer (or long integer) parameter and returns its number of occurrences. If the hash value does not exist, 0 is returned.
 * `exists` -- takes a hash value as a positive integer (or long integer) parameter and returns `True` if such value exists in the distributed hashtable, or `False` otherwise.
 * `calculateCollision` -- calculates the probability of collisions in the current DHT.
+* `countCollision` -- counts the hash buckets that have collision, the number of inserted hash values that collide, and the total number of hash values inserted into the DHT.
 
 Additionally, `LocalDbDHT` provides a `close` API that closes all shelve instances.
 
